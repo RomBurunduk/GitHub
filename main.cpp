@@ -10,6 +10,7 @@ public:
     int num, den;
     std::string AsString() const { return std::to_string(num) + '/' + std::to_string(den); }
     Rational(int num1 = 0, int den1 = 1): num{ num1 }, num_ { num }, den{den1}, den_{ den } {
+    // Те переменные, которые передаются в конструктор как параметры - это локальные переменные конструктора! 
         if (den_ == 0) {
             throw "Denominator can`t be zero";
         }
