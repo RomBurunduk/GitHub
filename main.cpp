@@ -5,11 +5,10 @@
 #include<cmath>
 
 
-class Rational {
+class Rational { 
 public:
-    int num, den;
-    std::string AsString() const { return std::to_string(num) + '/' + std::to_string(den); }
-    Rational(int num1 = 0, int den1 = 1): num{ num1 }, num_ { num }, den{den1}, den_{ den } {
+    std::string AsString() const { return std::to_string(num_) + '/' + std::to_string(den_); }
+    Rational(int num = 0, int den = 1): num_ {num}, den_ {den} {
         if (den_ == 0) {
             throw "Denominator can`t be zero";
         }
@@ -23,7 +22,6 @@ public:
         int num = GetNum() * rhs.GetDen() + rhs.GetNum() * GetDen();
         return Rational(num, den);
     }
-
 private:
     int num_;
     int den_;
