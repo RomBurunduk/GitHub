@@ -1,35 +1,58 @@
+"version": "2.0.0",
+"tasks": [
 {
-	"version": "2.0.0",
-	"tasks": [
-    {
-      "type": "shell",
-      "label": "cl.exe build active file Bob",
-      "command": "cl.exe",
-      "args": [
-        "/Zi",
-        "/EHsc",
-        "/Fe:",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe",
-        "${file}"
-      ],
-	  "options": {
-		"shell": {
-			"executable": "cmd.exe",
-			"args": [
-			  "/d",
-			  "/c",
-			  // The path to VsDevCmd.bat depends on the version of Visual Studio you have installed.
-			  "C:\\Program^ Files\\Microsoft^ Visual^ Studio\\2022\\Enterprise\\Common7\\Tools\\VsDevCmd.bat",
-			  "&&"
-			]
-		  }
+  "type": "shell",
+  "label": "Windows cl.exe build active file",
+  "command": "cl.exe",
+  "args": [
+	"/Zi",
+	"/EHsc",
+	"/Fe:",
+	"${fileDirname}\\${fileBasenameNoExtension}.exe",
+	"${file}"
+  ],
+  "options": {
+	"shell": {
+		"executable": "cmd.exe",
+		"args": [
+		  "/d",
+		  "/c",
+		  // The path to VsDevCmd.bat depends on the version of Visual Studio you have installed.
+		  "C:\\Program^ Files\\Microsoft^ Visual^ Studio\\2022\\Enterprise\\Common7\\Tools\\VsDevCmd.bat",
+		  "&&"
+		]
+	  }
 
-	  },
-      "problemMatcher": ["$msCompile"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    }
-	]
+  },
+  "problemMatcher": ["$msCompile"],
+  "group": {
+	"kind": "build",
+	"isDefault": true
+  }
+},
+{
+	"type": "cppbuild",
+	"label": "MacOS clang++ build active file",
+	"command": "/usr/bin/clang++",
+	"args": [
+		"-std=c++17",
+		"-fcolor-diagnostics",
+		"-fansi-escape-codes",
+		"-g",
+		"${file}",
+		"-o",
+		"${fileDirname}/${fileBasenameNoExtension}"
+	],
+	"options": {
+		"cwd": "${fileDirname}"
+	},
+	"problemMatcher": [
+		"$gcc"
+	],
+	"group": {
+		"kind": "build",
+		"isDefault": false
+	},
+	"detail": "Build For MacOS"
 }
+]

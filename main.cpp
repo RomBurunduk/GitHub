@@ -5,7 +5,7 @@
 #include<cmath>
 
 
-class Rational {
+class Rational { 
 public:
     std::string AsString() const { return std::to_string(num_) + '/' + std::to_string(den_); }
     Rational(int num = 0, int den = 1): num_ { num }, den_{ den } {
@@ -23,7 +23,6 @@ public:
         int num = GetNum() * rhs.GetDen() + rhs.GetNum() * GetDen();
         return Rational(num, den);
     }
-
 private:
     int num_;
     int den_;
