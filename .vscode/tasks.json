@@ -1,25 +1,35 @@
 {
 	"version": "2.0.0",
 	"tasks": [
-		{
-			"type": "cppbuild",
-			"label": "C/C++: cl.exe build active file",
-			"command": "cl.exe",
+    {
+      "type": "shell",
+      "label": "cl.exe build active file Bob",
+      "command": "cl.exe",
+      "args": [
+        "/Zi",
+        "/EHsc",
+        "/Fe:",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe",
+        "${file}"
+      ],
+	  "options": {
+		"shell": {
+			"executable": "cmd.exe",
 			"args": [
-				"/Zi",
-				"/EHsc",
-				"/nologo",
-				"/Fe${fileDirname}\\${fileBasenameNoExtension}.exe",
-				"${file}"
-			],
-			"options": {
-				"cwd": "${fileDirname}"
-			},
-			"problemMatcher": [
-				"$msCompile"
-			],
-			"group": "build",
-			"detail": "compiler: cl.exe"
-		}
+			  "/d",
+			  "/c",
+			  // The path to VsDevCmd.bat depends on the version of Visual Studio you have installed.
+			  "C:\\Program^ Files\\Microsoft^ Visual^ Studio\\2022\\Enterprise\\Common7\\Tools\\VsDevCmd.bat",
+			  "&&"
+			]
+		  }
+
+	  },
+      "problemMatcher": ["$msCompile"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
 	]
 }
