@@ -22,6 +22,17 @@ public:
         int num = GetNum() * rhs.GetDen() + rhs.GetNum() * GetDen();
         return Rational(num, den);
     }
+    bool operator>(const Rational& rhs) const {
+        int den = GetDen() * rhs.GetDen();
+        int num = GetNum() * rhs.GetDen() - rhs.GetNum() * GetDen();
+        if (num<0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
 private:
     int num_;
     int den_;
@@ -35,6 +46,15 @@ private:
     }
 };
 
+Rational max(const Rational a, const Rational b) {
+        if (a>b) {
+            return a;
+        } 
+        else {
+            return b;
+        }
+    }
+
 int main() {
     Rational r0;
     Rational r1(5);
@@ -44,4 +64,6 @@ int main() {
     std::cout << r1.AsString() << std::endl;
     std::cout << r2.AsString() << std::endl;
     std::cout << r3.AsString() << std::endl;
+    std::cout << max(r2,r3).AsString() << std::endl;
+
 }
